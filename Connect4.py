@@ -46,7 +46,7 @@ GameFinished = False
 #OutputBoard
 for Row in range(6):
     for Column in range(7):
-        print(Board[Row, Column], "  ", end = '')
+        print(Board[5 - Row, 6 - Column], "  ", end = '')
     print("\n")
 
 Count = 0
@@ -81,14 +81,16 @@ while GameFinished == False:
                 WinnerFound = True
     if WinnerFound == False:
             #CheckLeftObliqueLineInValidColumn
-        if ValidRow == 3 or ValidRow == 4 or ValidRow == 5:
-            if Board[ValidRow, ValidColumn] == ThisPlayer and Board[ValidRow - 1, ValidColumn - 1] == ThisPlayer and Board[ValidRow - 2, ValidColumn - 2] == ThisPlayer and Board[ValidRow - 3, ValidColumn - 3] == ThisPlayer:
-                WinnerFound = True
+        #if ValidRow == 3 or ValidRow == 4 or ValidRow == 5:
+            if ValidColumn - 3 >= 0:
+                if Board[ValidRow, ValidColumn] == ThisPlayer and Board[ValidRow - 1, ValidColumn - 1] == ThisPlayer and Board[ValidRow - 2, ValidColumn - 2] == ThisPlayer and Board[ValidRow - 3, ValidColumn - 3] == ThisPlayer:
+                    WinnerFound = True
     if WinnerFound == False:
             #CheckRightObliqueLineInValidColumn
-        if ValidRow == 3 or ValidRow == 4 or ValidRow == 5:
-            if Board[ValidRow - 3, ValidColumn + 3] == ThisPlayer and Board[ValidRow - 2, ValidColumn + 2] == ThisPlayer and Board[ValidRow - 1, ValidColumn + 1] == ThisPlayer and Board[ValidRow, ValidColumn] == ThisPlayer:
-                WinnerFound = True
+        #if ValidRow == 3 or ValidRow == 4 or ValidRow == 5:
+            if ValidColumn + 3 <= 6:
+                if Board[ValidRow - 3, ValidColumn + 3] == ThisPlayer and Board[ValidRow - 2, ValidColumn + 2] == ThisPlayer and Board[ValidRow - 1, ValidColumn + 1] == ThisPlayer and Board[ValidRow, ValidColumn] == ThisPlayer:
+                    WinnerFound = True
     if WinnerFound == True:
         GameFinished = True
         print(ThisPlayer, " is the winner.")
